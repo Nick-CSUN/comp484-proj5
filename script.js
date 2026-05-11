@@ -116,6 +116,16 @@ function initMap() {
         disableDoubleClickZoom: true,
 
         // FEATURE #1
+        // MapTypeId is used to control the visual style of the map.
+        // The SATELLITE map type displays real-world aerial imagery,
+        // making the game more challenging because players must identify
+        // buildings and landmarks without standard road labels.
+
+        // Different map styles:
+        //ROADMAP displays the default road map view with basemap labels.
+        //SATELLITE displays a photorealistic map based on aerial imagery.
+        //HYBRID displays the satellite map view with basemap labels.
+        //TERRAIN displays a physical map based on terrain information.
         mapTypeId: google.maps.MapTypeId.SATELLITE/*,
 
     restriction: {
@@ -235,6 +245,12 @@ function handleGuess(event) {
 
 function showRectangle(location, isCorrect) {
 
+    // FEATURE #2
+    // Rectangle is used to visually display the correct answer area
+    // on the map after the player makes a guess. The rectangle changes
+    // color depending on whether the player's answer was correct or
+    // incorrect, providing immediate visual feedback during gameplay.
+    // Simply put, this creates a rectangle based on specific dimensions.
     const rectangle = new google.maps.Rectangle({
 
         map: map,
