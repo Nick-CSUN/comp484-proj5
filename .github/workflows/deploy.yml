@@ -13,6 +13,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Debug Secret Exists
+  run: |
+    if [ -z "${{ secrets.GOOGLE_MAPS_API_KEY }}" ]; then
+      echo "SECRET IS MISSING"
+      exit 1
+    else
+      echo "SECRET FOUND"
+    fi
+
       - name: Inject API Key
         run: |
           python3 - <<EOF
