@@ -7,6 +7,10 @@ on:
 
 jobs:
   deploy:
+
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
 
     steps:
@@ -34,13 +38,11 @@ jobs:
             html = html.replace('__API_KEY__', key);
 
             fs.writeFileSync('index.html', html);
+
+            console.log('API key injected successfully');
           "
         env:
           KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
-
-      - name: Debug Key Prefix
-        run: |
-          echo "${{ secrets.GOOGLE_MAPS_API_KEY }}" | cut -c1-6
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
