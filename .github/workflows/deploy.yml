@@ -24,19 +24,19 @@ jobs:
 
       - name: Inject API Key
         run: |
-          python3 - <<EOF
-          from pathlib import Path
+          node -e "
+            const fs = require('fs');
 
-          key = "${{ secrets.GOOGLE_MAPS_API_KEY }}"
+            const key = process.env.KEY;
 
-          path = Path("index.html")
+            let html = fs.readFileSync('index.html', 'utf8');
 
-          content = path.read_text()
+            html = html.replace('__API_KEY__', key);
 
-          content = content.replace("__API_KEY__", key)
-
-          path.write_text(content)
-          EOF
+            fs.writeFileSync('index.html', html);
+          "
+        env:
+          KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
 
       - name: Debug Key Prefix
         run: |
@@ -47,4 +47,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
-          
