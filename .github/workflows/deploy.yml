@@ -14,14 +14,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Create config.js
+      - name: Inject API Key
         run: |
-          echo "const API_KEY = '${{ secrets.GOOGLE_MAPS_API_KEY }}';" > config.js
+          sed -i "s|__API_KEY__|${{ secrets.GOOGLE_MAPS_API_KEY }}|g" index.html
 
-      - name: Deploy
+      - name: Verify Replacement
+        run: |
+          grep "maps.googleapis.com" index.html
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
