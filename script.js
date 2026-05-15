@@ -209,7 +209,8 @@ function handleGuess(event) {
         Math.abs(guessLng - correctLocation.lng) < tolerance;
 
     // FEATURE #2
-    showRectangle(correctLocation, isCorrect);
+    showOverlay(correctLocation, isCorrect);
+    //showRectangle(correctLocation, isCorrect);
 
     if (isCorrect) {
 
@@ -243,7 +244,41 @@ function handleGuess(event) {
 // DRAW RECTANGLE
 // =====================
 
-function showRectangle(location, isCorrect) {
+function showOverlay(location, isCorrect) {
+
+    const image =
+        isCorrect ? "greenOverlay.jpg" : "redOverlay.png";
+
+    const bounds = {
+
+        north: location.lat + tolerance,
+
+        south: location.lat - tolerance,
+
+        east: location.lng + tolerance,
+
+        west: location.lng - tolerance
+    };
+
+    // FEATURE #2
+    // GroundOverlay places an image directly onto a geographic
+    // section of the map using latitude and longitude bounds.
+    // This is used to visually highlight the correct building area
+    // after a player submits a guess.
+
+    const overlay =
+        new google.maps.GroundOverlay(image, bounds);
+
+    overlay.setMap(map);
+
+    setTimeout(() => {
+
+        overlay.setMap(null);
+
+    }, 2000);
+}
+
+/*function showRectangle(location, isCorrect) {
 
     // FEATURE #2
     // Rectangle is used to visually display the correct answer area
@@ -282,7 +317,7 @@ function showRectangle(location, isCorrect) {
         rectangle.setMap(null);
 
     }, 2000);
-}
+}*/
 
 // =====================
 // UPDATE SCORE
