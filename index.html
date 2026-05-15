@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSUN Map Guessing Game</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        console.log("API KEY PLACEHOLDER:", "AIzaSyB4dcbf53Njhcq6Py14zV8FEqviY47IM5Y");
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4dcbf53Njhcq6Py14zV8FEqviY47IM5Y">
+    </script>
+
+</head>
+
+<body>
+
+    <div id="gameContainer">
+
+        <!-- LEFT PANEL -->
+        <div id="sidePanel">
+
+            <h1>CSUN Map Game</h1>
+
+            <div id="question">
+                Press Start Game
+            </div>
+
+            <div id="feedback"></div>
+
+            <div id="stats">
+
+                <p id="score">Score: 0 / 5</p>
+
+                <p id="timer">Time: 0s</p>
+
+                <p id="highScore">High Score: 0</p>
+
+            </div>
+
+            <!--<div id="difficultySection">
+
+                <h3>Select Difficulty</h3>
+
+                <button id="easyBtn">
+                    Easy Mode
+                </button>
+
+                <button id="hardBtn">
+                    Hard Mode
+                </button>
+
+            </div>-->
+
+            <button id="startBtn">
+                Start Game
+            </button>
+
+            <button id="restartBtn">
+                Restart Game
+            </button>
+
+        </div>
+
+        <!-- MAP -->
+        <div id="map"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
