@@ -1,6 +1,6 @@
 // Load Google Maps API key dynamically
-document.getElementById("googleMapsScript").src =
-    `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
+//document.getElementById("googleMapsScript").src =
+  //  `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
 
 // =====================
 // GLOBAL VARIABLES
