@@ -17,32 +17,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Debug Secret Exists
+      - name: Create config.js
         run: |
-          if [ -z "${{ secrets.GOOGLE_MAPS_API_KEY }}" ]; then
-            echo "SECRET IS MISSING"
-            exit 1
-          else
-            echo "SECRET FOUND"
-          fi
-
-      - name: Inject API Key
-        run: |
-          node -e "
-            const fs = require('fs');
-
-            const key = process.env.KEY;
-
-            let html = fs.readFileSync('index.html', 'utf8');
-
-            html = html.replace('__API_KEY__', key);
-
-            fs.writeFileSync('index.html', html);
-
-            console.log('API key injected successfully');
-          "
-        env:
-          KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          echo "const API_KEY = '${{ secrets.GOOGLE_MAPS_API_KEY }}';" > config.js
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
